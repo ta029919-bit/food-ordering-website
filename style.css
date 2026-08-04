@@ -202,42 +202,48 @@ html, body {
 }
 
 @media screen and (max-width: 768px) {
-  /* 1. Purani Floating Burger Image Hide Karein */
+  /* 1. Side wali floating image ko hide karne ke liye */
+  .hero img, 
   .hero-image-container, 
-  .hero-section img {
+  #home img {
     display: none !important;
   }
 
-  /* 2. Hero Section Par Background Image Set Karein */
-  .hero-section, #home {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('deal3.jpg') !important; /* Yahan apni image ka sahi name likhein */
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    border-radius: 16px;
+  /* 2. Hero Section / Home Area Par Background Image Set Karne Ke Liye */
+  .hero, #home {
+    background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('deal3.jpg') no-repeat center center / cover !important;
+    border-radius: 16px !important;
     padding: 25px 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  /* 3. Hamburger Menu Pop-up Alignment */
+  /* Text Sizing & Spacing Adjustments */
+  .hero h1 {
+    font-size: 1.6rem !important;
+    line-height: 1.25 !important;
+  }
+
+  /* 3. Hamburger Menu Dropdown Alignment */
   .nav-container {
-    position: relative; /* Menu ko right side par align rakhne ke liye */
+    position: relative !important;
   }
 
   .nav-links {
-    display: none; /* Starting mein chhupa rahega */
-    flex-direction: column;
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    background: #ffffff;
-    width: 180px;
-    padding: 15px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
-    border-radius: 10px;
-    z-index: 9999;
+    display: none !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: 50px !important;
+    right: 15px !important;
+    background: #ffffff !important;
+    width: 180px !important;
+    padding: 15px !important;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.15) !important;
+    border-radius: 10px !important;
+    z-index: 9999 !important;
   }
 
-  /* Click hone par jab active class lagegi toh menu dikhega */
+  /* Active class par menu dikhane ke liye */
   .nav-links.active {
     display: flex !important;
   }
