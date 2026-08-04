@@ -102,37 +102,37 @@
     <div id="main-app-content" style="display: none;">
         
         <header class="navbar" id="navbar">
-            <div class="nav-container">
-                <a href="#home" class="logo"><i class="fa-solid fa-burger"></i> BUZZ <span>RESTAURANT</span></a>
-                
-                <div class="status-badge"><span class="pulse-dot"></span> Open Now (12 PM - 3 AM)</div>
+    <div class="nav-container">
+        <!-- Logo -->
+        <a href="#home" class="logo"><i class="fa-solid fa-burger"></i> BUZZ <span>RESTAURANT</span></a>
+        
+        <!-- Action Buttons & Hamburger -->
+        <div class="nav-actions">
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+            <button id="cart-btn" class="icon-btn cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+            </button>
+            <button id="logout-btn" class="btn btn-outline-sm mobile-logout">Logout</button>
+            <button id="hamburger-btn" class="icon-btn hamburger-btn" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
 
-                <nav class="nav-links" id="nav-links">
-                    <a href="#home" class="nav-link active">Home</a>
-                    <a href="#deals" class="nav-link">Deals</a>
-                    <a href="#categories" class="nav-link">Categories</a>
-                    <a href="#menu" class="nav-link">Menu</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#reviews" class="nav-link">Reviews</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </nav>
-
-                <div class="nav-actions">
-                    <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
-                        <i class="fa-solid fa-moon" id="theme-icon"></i>
-                    </button>
-                    <button id="cart-btn" class="icon-btn cart-icon">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span id="cart-count">0</span>
-                    </button>
-                    <button id="logout-btn" class="btn btn-outline-sm">Logout</button>
-                    <!-- Mobile Hamburger Toggle Button -->
-                    <button id="hamburger-btn" class="icon-btn hamburger-btn" aria-label="Toggle Navigation">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </header>
+        <!-- Navigation Links Menu -->
+        <nav class="nav-links" id="nav-links">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#deals" class="nav-link">Deals</a>
+            <a href="#categories" class="nav-link">Categories</a>
+            <a href="#menu" class="nav-link">Menu</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#reviews" class="nav-link">Reviews</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </div>
+</header>
 
         <!-- Hero Section with Background Overlay -->
         <section id="home" class="hero">
