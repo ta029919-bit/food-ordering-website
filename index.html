@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device_width, initial-scale=1.0,shrink-to-fit=no">
+    <meta name="viewport" content="width=1200, initial-scale=0.3,shrink-to-fit=no">
     <title>BUZZ RESTAURANT - Foodie Express</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -362,5 +362,15 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        const burgerBtn = document.getElementById('hamburger-menu');
+        const navMenu = document.getElementById('nav-links');
+
+        if (burgerBtn && navMenu) {
+        burgerBtn.addEventListener('click', () => {
+          navMenu.classList.toggle('active');
+        });
+      }
+</script>
 </body>
 </html>
