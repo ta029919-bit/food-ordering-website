@@ -192,58 +192,38 @@ body { background-color: var(--bg-color); color: var(--text-color); transition: 
 #scroll-top-btn { position: fixed; bottom: 20px; right: 20px; background: var(--primary-color); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: none; z-index: 150; }
 footer { text-align: center; padding: 1.5rem; background: var(--bg-alt); font-size: 0.85rem; border-top: 1px solid var(--border-color); }
 /* --- Responsive Fix for Mobile & Tablet --- */
-@media screen and (max-width: 900px) {
-  body {
-    padding: 10px;
-  }
-
-  .container {
-    padding: 15px;
-    max-width: 100%;
-  }
-
-  /* Header adjustments for mobile */
-  header {
-    flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
-  }
-
-  .header-actions {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  nav {
-    gap: 10px;
-  }
-
-  /* Login Screen: Mobile par ek ke niche ek aa jaye */
+@media screen and (max-width: 768px) {
+  /* Main Container Clean Margin */
   .login-container {
     width: 100% !important;
     height: auto !important;
+    display: flex !important;
     flex-direction: column-reverse !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
   }
 
-  .login-left {
-    width: 100% !important;
-    padding: 20px 15px !important;
-  }
-
+  /* Image Top Banner Style */
   .login-right-curved {
     width: 100% !important;
-    height: 220px !important;
-    border-radius: 15px !important;
+    height: 180px !important;
+    border-radius: 0 0 20px 20px !important; /* Mobile curved edge */
   }
 
-  /* Contact Page: Mobile par ek ke niche ek */
+  /* Text & Input Field Alignment */
+  .login-left {
+    padding: 25px 20px !important;
+  }
+
+  /* Contact Page Grid Fix */
   .contact-grid {
+    display: flex !important;
     flex-direction: column !important;
-    gap: 20px;
+    gap: 25px !important;
   }
 
-  .contact-info-card, .contact-form-card {
-    width: 100% !important;
+  .contact-info-card {
+    border-radius: 16px !important;
+    padding: 25px !important;
   }
 }
