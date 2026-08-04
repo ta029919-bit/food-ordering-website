@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200, initial-scale=0.3,shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BUZZ RESTAURANT - Foodie Express</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -56,8 +56,12 @@
                     <p class="register-text">Don't have an account? <a href="#">Register</a></p>
                 </form>
             </div>
+            <!-- Zinger Background Integrated Curved Right Side -->
             <div class="login-right-curved">
-                <img src="zinger.jpg" alt="zinger Burger">
+                <div class="login-right-content">
+                    <h3>Taste The Freshness</h3>
+                    <p>Get Hot Zinger Burgers & Desserts delivered right to your doorstep.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -112,9 +116,6 @@
                     <a href="#reviews" class="nav-link">Reviews</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </nav>
-                <div class="hamburger-menu" id="hamburger-menu">
-                <i class="fa-solid fa-bars"></i>
-                </div>
 
                 <div class="nav-actions">
                     <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
@@ -125,25 +126,29 @@
                         <span id="cart-count">0</span>
                     </button>
                     <button id="logout-btn" class="btn btn-outline-sm">Logout</button>
+                    <!-- Mobile Hamburger Toggle Button -->
+                    <button id="hamburger-btn" class="icon-btn hamburger-btn" aria-label="Toggle Navigation">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
             </div>
         </header>
 
+        <!-- Hero Section with Background Overlay -->
         <section id="home" class="hero">
-            <div class="hero-content">
-                <span class="offer-tag">🇵🇰 AZADI SALE - 15% OFF SITEWIDE</span>
-                <h1>Delicious Fast Food & Desserts Delivered Fast To Your Door</h1>
-                <p>Order your favorite Zinger Burgers, Pizzas, Shakes & Yummy Desserts in PKR!</p>
-                <div class="promo-banner">
-                    <i class="fa-solid fa-truck-fast"></i> <strong>1st Order Promo:</strong> FREE Delivery (Rs. 0) Applied!
+            <div class="hero-overlay-wrapper">
+                <div class="hero-content">
+                    <span class="offer-tag">🇵🇰 AZADI SALE - 15% OFF SITEWIDE</span>
+                    <h1>Delicious Fast Food & Desserts Delivered Fast To Your Door</h1>
+                    <p>Order your favorite Zinger Burgers, Pizzas, Shakes & Yummy Desserts in PKR!</p>
+                    <div class="promo-banner">
+                        <i class="fa-solid fa-truck-fast"></i> <strong>1st Order Promo:</strong> FREE Delivery (Rs. 0) Applied!
+                    </div>
+                    <div class="hero-btns">
+                        <a href="#deals" class="btn btn-primary">Explore Deals</a>
+                        <a href="#menu" class="btn btn-secondary">Full Menu</a>
+                    </div>
                 </div>
-                <div class="hero-btns">
-                    <a href="#deals" class="btn btn-primary">Explore Deals</a>
-                    <a href="#menu" class="btn btn-secondary">Full Menu</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="zinger.jpg" alt="Zinger Special Burger">
             </div>
         </section>
 
@@ -197,19 +202,19 @@
                 <div class="staff-grid">
                     <div class="staff-card">
                         <i class="fa-solid fa-user-shield staff-icon"></i>
-                        <h4>Tooba Ahmad (Owner)</h4>
+                        <h4>Subhamoy (Owner)</h4>
                         <p>CEO & Founder</p>
                         <span class="badge-staff">Admin Login</span>
                     </div>
                     <div class="staff-card">
                         <i class="fa-solid fa-utensils staff-icon"></i>
-                        <h4>Chef Wahab Raza</h4>
+                        <h4>Chef Ahmed Khan</h4>
                         <p>Head Chef</p>
                         <span class="badge-staff">Kitchen Access</span>
                     </div>
                     <div class="staff-card">
                         <i class="fa-solid fa-clipboard-user staff-icon"></i>
-                        <h4>Fatima Ahmad</h4>
+                        <h4>Sara Malik</h4>
                         <p>General Manager</p>
                         <span class="badge-staff">Manager Access</span>
                     </div>
@@ -362,15 +367,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        const burgerBtn = document.getElementById('hamburger-menu');
-        const navMenu = document.getElementById('nav-links');
-
-        if (burgerBtn && navMenu) {
-        burgerBtn.addEventListener('click', () => {
-          navMenu.classList.toggle('active');
-        });
-      }
-</script>
 </body>
 </html>
