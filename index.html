@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUZZ RESTAURANT - Foodie Express</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="video-intro-screen" class="video-screen-wrapper">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="video.mp4" type="video/mp4">
+            <source src="vedio.mp4" type="video/mp4">
+            Your browser does not support video play.
+        </video>
+        <div class="video-overlay">
+            <div class="intro-content">
+                <span class="azadi-badge"><i class="fa-solid fa-flag"></i> Azadi Special 15% OFF</span>
+                <h1>Welcome to BUZZ RESTAURANT</h1>
+                <p>Taste The Hot & Juicy Burgers, Desserts & Special Azadi Deals!</p>
+                <button id="btn-goto-login" class="btn btn-primary btn-lg">
+                    Proceed to Login <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-page-screen" class="login-page-wrapper" style="display: none;">
+        <div class="login-container">
+            <div class="login-left">
+                <div class="brand-logo">
+                    <i class="fa-solid fa-burger"></i>
+                    <span>BUZZ RESTAURANT</span>
+                </div>
+                <h2>Your Hunger Stops Here</h2>
+                <p class="subtitle">Login to get your favourites fast</p>
+
+                <form id="initial-login-form">
+                    <div class="input-field">
+                        <input type="email" id="user-email" placeholder="Email Id or Staff ID" required>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="user-password" placeholder="Password" required>
+                    </div>
+                    <div class="forgot-pass">
+                        <a href="#" id="open-forgot-modal">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn-login-submit">Log in</button>
+                    
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
+
+                    <p class="register-text">Don't have an account? <a href="#">Register</a></p>
+                </form>
+            </div>
+            <div class="login-right-curved">
+                <img src="zinger.jpg" alt="zinger Burger">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="reset-password-modal">
+        <div class="modal-content">
+            <button class="close-btn modal-close">&times;</button>
+            <h2 style="margin-bottom: 10px;">Reset Password</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Create a new strong password for your account.</p>
+
+            <form id="reset-password-form">
+                <div class="form-group">
+                    <label>New Password *</label>
+                    <input type="password" id="new-password-input" placeholder="Enter new password" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password *</label>
+                    <input type="password" id="confirm-password-input" placeholder="Confirm new password" required>
+                </div>
+
+                <div class="password-note">
+                    <p><strong><i class="fa-solid fa-shield-halved"></i> Password Requirements:</strong></p>
+                    <ul>
+                        <li>At least 8 characters long</li>
+                        <li>Must include uppercase & lowercase letters (e.g. A-Z, a-z)</li>
+                        <li>Must contain at least 1 number (0-9)</li>
+                        <li>Must contain at least 1 special character (e.g. @, $, !, %, *, ?, &)</li>
+                    </ul>
+                </div>
+
+                <div id="password-error-msg" class="error-msg" style="display: none;"></div>
+
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top: 15px;">Update Password</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="main-app-content" style="display: none;">
+        
+        <header class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="#home" class="logo"><i class="fa-solid fa-burger"></i> BUZZ <span>RESTAURANT</span></a>
+                
+                <div class="status-badge"><span class="pulse-dot"></span> Open Now (12 PM - 3 AM)</div>
+
+                <nav class="nav-links" id="nav-links">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#deals" class="nav-link">Deals</a>
+                    <a href="#categories" class="nav-link">Categories</a>
+                    <a href="#menu" class="nav-link">Menu</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#reviews" class="nav-link">Reviews</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                        <i class="fa-solid fa-moon" id="theme-icon"></i>
+                    </button>
+                    <button id="cart-btn" class="icon-btn cart-icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-count">0</span>
+                    </button>
+                    <button id="logout-btn" class="btn btn-outline-sm">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <span class="offer-tag">🇵🇰 AZADI SALE - 15% OFF SITEWIDE</span>
+                <h1>Delicious Fast Food & Desserts Delivered Fast To Your Door</h1>
+                <p>Order your favorite Zinger Burgers, Pizzas, Shakes & Yummy Desserts in PKR!</p>
+                <div class="promo-banner">
+                    <i class="fa-solid fa-truck-fast"></i> <strong>1st Order Promo:</strong> FREE Delivery (Rs. 0) Applied!
+                </div>
+                <div class="hero-btns">
+                    <a href="#deals" class="btn btn-primary">Explore Deals</a>
+                    <a href="#menu" class="btn btn-secondary">Full Menu</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="zinger.jpg" alt="Zinger Special Burger">
+            </div>
+        </section>
+
+        <section id="deals" class="section deals-section">
+            <h2 class="section-title"><i class="fa-solid fa-tags"></i> Exclusive Azadi Mega Deals</h2>
+            <div class="deals-grid" id="deals-grid"></div>
+        </section>
+
+        <section id="categories" class="section">
+            <h2 class="section-title">Categories</h2>
+            <div class="category-grid">
+                <button class="category-card active" data-category="all">
+                    <i class="fa-solid fa-border-all"></i><span>All</span>
+                </button>
+                <button class="category-card" data-category="burger">
+                    <i class="fa-solid fa-burger"></i><span>Burgers</span>
+                </button>
+                <button class="category-card" data-category="fries">
+                    <i class="fa-solid fa-fire"></i><span>Fries & Starters</span>
+                </button>
+                <button class="category-card" data-category="pizza">
+                    <i class="fa-solid fa-pizza-slice"></i><span>Pizzas</span>
+                </button>
+                <button class="category-card" data-category="desserts">
+                    <i class="fa-solid fa-ice-cream"></i><span>Desserts & Shakes</span>
+                </button>
+                <button class="category-card" data-category="drinks">
+                    <i class="fa-solid fa-glass-water"></i><span>Drinks</span>
+                </button>
+            </div>
+        </section>
+
+        <section id="menu" class="section">
+            <h2 class="section-title">Explore Our Delicious Menu</h2>
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="search-input" placeholder="Search burgers, desserts, shakes, pizzas...">
+            </div>
+            <div class="food-grid" id="food-grid"></div>
+        </section>
+
+        <section id="about" class="section about-section">
+            <h2 class="section-title">About BUZZ RESTAURANT</h2>
+            <div class="about-container">
+                <div class="about-text">
+                    <h3>We Serve Passion, Quality & Authentic Flavor</h3>
+                    <p>BUZZ RESTAURANT was founded with a single mission: to provide the juiciest burgers, crispies fries, delicious desserts, and ice-cold beverages with premium quality ingredients. Located in the heart of Pakistan, we take pride in our hygiene standards and fast delivery services.</p>
+                </div>
+                
+                <h3 class="staff-title"><i class="fa-solid fa-user-tie"></i> Our Management & Staff Login Portal</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <i class="fa-solid fa-user-shield staff-icon"></i>
+                        <h4>Tooba Ahmad (Owner)</h4>
+                        <p>CEO & Founder</p>
+                        <span class="badge-staff">Admin Login</span>
+                    </div>
+                    <div class="staff-card">
+                        <i class="fa-solid fa-utensils staff-icon"></i>
+                        <h4>Chef Wahab Raza</h4>
+                        <p>Head Chef</p>
+                        <span class="badge-staff">Kitchen Access</span>
+                    </div>
+                    <div class="staff-card">
+                        <i class="fa-solid fa-clipboard-user staff-icon"></i>
+                        <h4>Fatima Ahmad</h4>
+                        <p>General Manager</p>
+                        <span class="badge-staff">Manager Access</span>
+                    </div>
+                    <div class="staff-card">
+                        <i class="fa-solid fa-motorcycle staff-icon"></i>
+                        <h4>Usman Ali</h4>
+                        <p>Delivery Lead</p>
+                        <span class="badge-staff">Rider Portal</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="section reviews-section">
+            <h2 class="section-title"><i class="fa-solid fa-comments"></i> Customer Feedbacks</h2>
+            <div class="reviews-grid" id="reviews-grid"></div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <h2 class="section-title">Get In Touch With Us</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info-card">
+                    <h3>Contact Information</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Main Boulevard, Gulberg III, Lahore, Pakistan</p>
+                    <p><i class="fa-solid fa-phone"></i> +92 300 1234567 / +92 42 3556789</p>
+                    <p><i class="fa-solid fa-envelope"></i> info@buzzrestaurant.pk</p>
+                    <p><i class="fa-solid fa-clock"></i> Open Daily: 12:00 PM - 03:00 AM</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contact-form">
+                    <h3>Send Us A Message</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="4" placeholder="Your Feedback or Inquiry..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <div class="cart-overlay" id="cart-overlay">
+            <div class="cart-drawer">
+                <div class="cart-header">
+                    <h3>My Order Cart (<span id="cart-drawer-count">0</span>)</h3>
+                    <button id="close-cart" class="close-btn">&times;</button>
+                </div>
+                <div class="cart-items" id="cart-items"></div>
+                <div class="cart-footer">
+                    <div class="summary-line"><span>Subtotal</span><span id="subtotal-price">Rs. 0</span></div>
+                    <div class="summary-line"><span>Azadi Discount (15%)</span><span id="discount-price" style="color: #2ed573;">- Rs. 0</span></div>
+                    <div class="summary-line" id="promo-discount-line" style="display: none;"><span>Promo Code Discount</span><span id="promo-discount-price" style="color: #2ed573;">- Rs. 0</span></div>
+                    <div class="summary-line"><span>1st Delivery Fee</span><span style="color: #2ed573;">FREE (Rs. 0)</span></div>
+                    <div class="summary-line total-line"><span>Total Amount</span><span id="cart-total-price">Rs. 0</span></div>
+                    <button id="proceed-checkout-btn" class="btn btn-primary btn-block">Checkout Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="checkout-modal">
+            <div class="modal-content">
+                <button class="close-btn modal-close">&times;</button>
+                <h2>Checkout Order (PKR)</h2>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" required placeholder="03001234567">
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Address *</label>
+                        <textarea rows="2" required placeholder="Enter complete address in Pakistan"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Promo Code / Coupon (Optional)</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="promo-code-input" placeholder="e.g. AZADI15 or BUZZ20" style="margin-top: 0;">
+                            <button type="button" id="apply-promo-btn" class="btn btn-secondary" style="padding: 0 15px;">Apply</button>
+                        </div>
+                        <p id="promo-message" style="font-size: 0.75rem; margin-top: 4px;"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Payment Method *</label>
+                        <select required style="width: 100%; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-alt); color: var(--text-color); outline: none;">
+                            <option value="cod">💵 Cash on Delivery (COD)</option>
+                            <option value="jazzcash">📱 JazzCash / EasyPaisa</option>
+                            <option value="card">💳 Debit / Credit Card</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Confirm & Place Order</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal" id="tracking-modal">
+            <div class="modal-content text-center">
+                <i class="fa-solid fa-circle-check success-icon"></i>
+                <h2>Order Confirmed!</h2>
+                <p style="font-size: 0.85rem; color: #666;">Order ID: <strong>#BZ-8902</strong></p>
+                
+                <div class="tracking-stepper">
+                    <div class="step active" id="step-1">
+                        <div class="step-icon"><i class="fa-solid fa-receipt"></i></div>
+                        <span>Received</span>
+                    </div>
+                    <div class="step" id="step-2">
+                        <div class="step-icon"><i class="fa-solid fa-utensils"></i></div>
+                        <span>Preparing</span>
+                    </div>
+                    <div class="step" id="step-3">
+                        <div class="step-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                        <span>On the Way</span>
+                    </div>
+                    <div class="step" id="step-4">
+                        <div class="step-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                        <span>Delivered</span>
+                    </div>
+                </div>
+
+                <div class="rider-info-box">
+                    <p><i class="fa-solid fa-user-gear"></i> <strong>Rider:</strong> Usman Ali (+92 300 9876543)</p>
+                    <p><i class="fa-solid fa-clock"></i> <strong>Est. Time:</strong> <span id="delivery-timer">25 Mins</span></p>
+                </div>
+
+                <button class="btn btn-primary modal-close" style="margin-top: 15px;">Back to Menu</button>
+            </div>
+        </div>
+
+        <button id="scroll-top-btn"><i class="fa-solid fa-arrow-up"></i></button>
+
+        <footer>
+            <p>&copy; 2026 BUZZ RESTAURANT Pakistan. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
