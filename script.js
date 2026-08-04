@@ -84,6 +84,24 @@ document.getElementById('logout-btn').addEventListener('click', () => {
     document.getElementById('login-page-screen').style.display = 'flex';
 });
 
+// Mobile Hamburger Menu Toggle
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const navLinks = document.getElementById('nav-links');
+
+if(hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active-menu');
+    });
+}
+
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        if(navLinks.classList.contains('active-menu')) {
+            navLinks.classList.remove('active-menu');
+        }
+    });
+});
+
 // FORGOT PASSWORD MODAL & VALIDATION LOGIC
 const resetModal = document.getElementById('reset-password-modal');
 document.getElementById('open-forgot-modal').onclick = (e) => {
