@@ -194,3 +194,50 @@ footer { text-align: center; padding: 1.5rem; background: var(--bg-alt); font-si
 /* --- Responsive Fix for Mobile & Tablet --- */
 
 }
+/* --- Fix Screen Overflow & Fit Content --- */
+html, body {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  /* 1. Header se Overflow Khatam Krna */
+  .nav-links, header nav {
+    display: none !important; /* Mobile par desktop nav links chup jaye ge */
+  }
+
+  .nav-container, header {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px 15px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Heading Size Fix (Bara Text Chota Krna) */
+  .hero-section h1, .hero-content h1 {
+    font-size: 1.6rem !important; /* Text size chota aur readable ho jaye ga */
+    line-height: 1.25 !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* 3. Hero Layout Grid/Flex Adjustment */
+  .hero-section, .hero-container {
+    display: flex !important;
+    flex-direction: column !important; /* Text upar aur image neeche aa jaye gi */
+    width: 100% !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 4. Burger Image Alignment */
+  .hero-image-container, .hero-img, .hero-section img {
+    width: 100% !important;
+    max-width: 260px !important; /* Image ka proper size set ho jaye ga */
+    height: auto !important;
+    margin: 15px auto 0 auto !important; /* Center align image */
+    display: block !important;
+  }
+}
