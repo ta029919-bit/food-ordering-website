@@ -1,371 +1,243 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUZZ RESTAURANT - Foodie Express</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+:root {
+    --bg-color: #ffffff;
+    --bg-alt: #fdfbf7;
+    --text-color: #2b2b2b;
+    --card-bg: #ffffff;
+    --primary-color: #ff5e00;
+    --secondary-color: #111111;
+    --border-color: #eee;
+    --shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
 
-    <div id="video-intro-screen" class="video-screen-wrapper">
-        <video autoplay muted loop playsinline id="bg-video">
-            <source src="video.mp4" type="video/mp4">
-            <source src="vedio.mp4" type="video/mp4">
-            Your browser does not support video play.
-        </video>
-        <div class="video-overlay">
-            <div class="intro-content">
-                <span class="azadi-badge"><i class="fa-solid fa-flag"></i> Azadi Special 15% OFF</span>
-                <h1>Welcome to BUZZ RESTAURANT</h1>
-                <p>Taste The Hot & Juicy Burgers, Desserts & Special Azadi Deals!</p>
-                <button id="btn-goto-login" class="btn btn-primary btn-lg">
-                    Proceed to Login <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --bg-alt: #1a1a1a;
+    --text-color: #f1f1f1;
+    --card-bg: #1e1e1e;
+    --secondary-color: #1f1f1f;
+    --border-color: #333;
+    --shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
 
-    <div id="login-page-screen" class="login-page-wrapper" style="display: none;">
-        <div class="login-container">
-            <div class="login-left">
-                <div class="brand-logo">
-                    <i class="fa-solid fa-burger"></i>
-                    <span>BUZZ RESTAURANT</span>
-                </div>
-                <h2>Your Hunger Stops Here</h2>
-                <p class="subtitle">Login to get your favourites fast</p>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-color); transition: background-color 0.3s, color 0.3s; }
 
-                <form id="initial-login-form">
-                    <div class="input-field">
-                        <input type="email" id="user-email" placeholder="Email Id or Staff ID" required>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" id="user-password" placeholder="Password" required>
-                    </div>
-                    <div class="forgot-pass">
-                        <a href="#" id="open-forgot-modal">Forgot password?</a>
-                    </div>
-                    <button type="submit" class="btn-login-submit">Log in</button>
-                    
-                    <div class="divider">
-                        <span>OR</span>
-                    </div>
+/* Status Indicator */
+.status-badge { background: #e3f9e5; color: #006600; font-size: 0.8rem; font-weight: bold; padding: 4px 12px; border-radius: 12px; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.pulse-dot { width: 8px; height: 8px; background: #2ed573; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 213, 115, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(46, 213, 115, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 213, 115, 0); } }
 
-                    <p class="register-text">Don't have an account? <a href="#">Register</a></p>
-                </form>
-            </div>
-            <!-- Zinger Background Integrated Curved Right Side -->
-            <div class="login-right-curved">
-                <div class="login-right-content">
-                    <h3>Taste The Freshness</h3>
-                    <p>Get Hot Zinger Burgers & Desserts delivered right to your doorstep.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+/* 1. Video Screen */
+.video-screen-wrapper { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; z-index: 999; }
+#bg-video { width: 100%; height: 100%; object-fit: cover; }
+.video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 1rem; }
+.azadi-badge { background: #006600; color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 10px; display: inline-block; }
+.intro-content h1 { font-size: 3.2rem; margin-bottom: 1rem; text-shadow: 0 4px 10px rgba(0,0,0,0.6); }
+.btn-lg { padding: 1rem 2.5rem; font-size: 1.1rem; border-radius: 30px; }
 
-    <div class="modal" id="reset-password-modal">
-        <div class="modal-content">
-            <button class="close-btn modal-close">&times;</button>
-            <h2 style="margin-bottom: 10px;">Reset Password</h2>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Create a new strong password for your account.</p>
+/* 2. Login Screen & Background Image Styling */
+.login-page-wrapper { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--bg-alt); padding: 1rem; }
+.login-container { width: 100%; max-width: 900px; min-height: 520px; background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); display: flex; overflow: hidden; border: 1px solid var(--border-color); flex-wrap: wrap; }
+.login-left { flex: 1 1 350px; padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+.brand-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+.login-left h2 { font-size: 1.8rem; color: var(--text-color); margin-bottom: 0.2rem; }
+.subtitle { color: #888; font-size: 0.85rem; margin-bottom: 1.8rem; }
+.input-field input { width: 100%; border: none; border-bottom: 1px solid var(--border-color); padding: 0.8rem 0; margin-bottom: 1.2rem; outline: none; background: transparent; color: var(--text-color); }
+.forgot-pass { text-align: right; margin-bottom: 1.5rem; }
+.forgot-pass a { font-size: 0.8rem; color: var(--primary-color); text-decoration: none; font-weight: 600; }
+.btn-login-submit { width: 100%; padding: 0.8rem; background: var(--primary-color); border: none; border-radius: 25px; color: white; font-weight: bold; cursor: pointer; font-size: 1rem; }
+.divider { text-align: center; margin: 1.5rem 0; position: relative; }
+.divider::before { content: ""; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: var(--border-color); }
+.divider span { position: relative; background: var(--card-bg); padding: 0 10px; font-size: 0.75rem; color: #aaa; }
+.register-text { font-size: 0.85rem; text-align: center; color: #666; }
 
-            <form id="reset-password-form">
-                <div class="form-group">
-                    <label>New Password *</label>
-                    <input type="password" id="new-password-input" placeholder="Enter new password" required>
-                </div>
-                <div class="form-group">
-                    <label>Confirm New Password *</label>
-                    <input type="password" id="confirm-password-input" placeholder="Confirm new password" required>
-                </div>
+/* Curved Right Section with Background Image zinger.jpg */
+.login-right-curved { 
+    flex: 1.1 1 350px; 
+    overflow: hidden;
+    position: relative;
+    border-top-left-radius: 120px; 
+    border-bottom-left-radius: 120px; 
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('zinger.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: white;
+    text-align: center;
+}
+.login-right-content h3 { font-size: 2rem; margin-bottom: 0.5rem; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+.login-right-content p { font-size: 0.95rem; line-height: 1.4; color: #f1f1f1; text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
 
-                <div class="password-note">
-                    <p><strong><i class="fa-solid fa-shield-halved"></i> Password Requirements:</strong></p>
-                    <ul>
-                        <li>At least 8 characters long</li>
-                        <li>Must include uppercase & lowercase letters (e.g. A-Z, a-z)</li>
-                        <li>Must contain at least 1 number (0-9)</li>
-                        <li>Must contain at least 1 special character (e.g. @, $, !, %, *, ?, &)</li>
-                    </ul>
-                </div>
+/* Password Reset Note & Validation Styling */
+.password-note { background: var(--bg-alt); padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border-color); margin-top: 10px; font-size: 0.78rem; color: var(--text-color); }
+.password-note ul { margin-left: 18px; margin-top: 4px; color: #666; }
+.error-msg { background: #ffe5e5; color: #d63031; font-size: 0.8rem; padding: 8px; border-radius: 8px; margin-top: 10px; text-align: center; font-weight: 600; }
 
-                <div id="password-error-msg" class="error-msg" style="display: none;"></div>
+/* Navbar Spacing & Alignment */
+.navbar { position: sticky; top: 0; z-index: 100; background: var(--card-bg); box-shadow: var(--shadow); padding: 1rem 5%; border-bottom: 1px solid var(--border-color); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 1rem; }
+.logo { font-weight: 800; font-size: 1.4rem; text-decoration: none; color: var(--text-color); white-space: nowrap; }
+.logo span { color: var(--primary-color); }
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-link { text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+.nav-link:hover, .nav-link.active { color: var(--primary-color); }
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
+.icon-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-color); position: relative; padding: 5px; }
+.cart-icon #cart-count { position: absolute; top: -5px; right: -8px; background: var(--primary-color); color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.7rem; }
+.hamburger-btn { display: none; }
 
-                <button type="submit" class="btn btn-primary btn-block" style="margin-top: 15px;">Update Password</button>
-            </form>
-        </div>
-    </div>
+.btn { padding: 0.6rem 1.4rem; border-radius: 20px; border: none; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; }
+.btn-primary { background: var(--primary-color); color: white; }
+.btn-primary.added-btn { background: #2ed573 !important; }
+.btn-secondary { background: var(--border-color); color: var(--text-color); }
+.btn-outline-sm { border: 1px solid var(--primary-color); background: transparent; color: var(--primary-color); border-radius: 15px; padding: 0.4rem 1rem; }
+.btn-block { width: 100%; }
 
-    <div id="main-app-content" style="display: none;">
-        
-        <header class="navbar" id="navbar">
-            <div class="nav-container">
-                <a href="#home" class="logo"><i class="fa-solid fa-burger"></i> BUZZ <span>RESTAURANT</span></a>
-                
-                <div class="status-badge"><span class="pulse-dot"></span> Open Now (12 PM - 3 AM)</div>
+/* Hero Section with Full Responsive Background Overlay */
+.hero { 
+    position: relative; 
+    min-height: 80vh; 
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)), url('zinger.jpg') center/cover no-repeat fixed; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 4rem 8%; 
+}
+.hero-overlay-wrapper { width: 100%; max-width: 900px; text-align: center; color: white; }
+.hero-content { margin: 0 auto; }
+.offer-tag { background: #e3f9e5; color: #006600; font-weight: bold; padding: 6px 16px; border-radius: 15px; font-size: 0.85rem; display: inline-block; }
+.promo-banner { background: rgba(255, 243, 205, 0.9); color: #856404; padding: 10px 18px; border-radius: 10px; font-size: 0.9rem; margin-top: 15px; display: inline-block; }
+.hero-content h1 { font-size: 2.5rem; margin: 1.2rem 0; line-height: 1.25; text-shadow: 0 4px 12px rgba(0,0,0,0.7); }
+.hero-content p { font-size: 1.1rem; color: #f1f1f1; text-shadow: 0 2px 6px rgba(0,0,0,0.7); }
+.hero-btns { display: flex; gap: 1rem; margin-top: 1.8rem; justify-content: center; flex-wrap: wrap; }
 
-                <nav class="nav-links" id="nav-links">
-                    <a href="#home" class="nav-link active">Home</a>
-                    <a href="#deals" class="nav-link">Deals</a>
-                    <a href="#categories" class="nav-link">Categories</a>
-                    <a href="#menu" class="nav-link">Menu</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#reviews" class="nav-link">Reviews</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </nav>
+/* Section & Cards */
+.section { padding: 3rem 8%; }
+.section-title { font-size: 1.8rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+.category-grid { display: flex; gap: 1rem; flex-wrap: wrap; }
+.category-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--text-color); font-weight: 600; }
+.category-card.active { background: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-                <div class="nav-actions">
-                    <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
-                        <i class="fa-solid fa-moon" id="theme-icon"></i>
-                    </button>
-                    <button id="cart-btn" class="icon-btn cart-icon">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span id="cart-count">0</span>
-                    </button>
-                    <button id="logout-btn" class="btn btn-outline-sm">Logout</button>
-                    <!-- Mobile Hamburger Toggle Button -->
-                    <button id="hamburger-btn" class="icon-btn hamburger-btn" aria-label="Toggle Navigation">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </header>
+.search-container { position: relative; max-width: 450px; margin-bottom: 2rem; }
+.search-container input { width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); outline: none; }
+.search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #aaa; }
 
-        <!-- Hero Section with Background Overlay -->
-        <section id="home" class="hero">
-            <div class="hero-overlay-wrapper">
-                <div class="hero-content">
-                    <span class="offer-tag">🇵🇰 AZADI SALE - 15% OFF SITEWIDE</span>
-                    <h1>Delicious Fast Food & Desserts Delivered Fast To Your Door</h1>
-                    <p>Order your favorite Zinger Burgers, Pizzas, Shakes & Yummy Desserts in PKR!</p>
-                    <div class="promo-banner">
-                        <i class="fa-solid fa-truck-fast"></i> <strong>1st Order Promo:</strong> FREE Delivery (Rs. 0) Applied!
-                    </div>
-                    <div class="hero-btns">
-                        <a href="#deals" class="btn btn-primary">Explore Deals</a>
-                        <a href="#menu" class="btn btn-secondary">Full Menu</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+.food-grid, .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.5rem; }
+.food-card { background: var(--card-bg); border-radius: 18px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: var(--shadow); padding: 12px; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+.food-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; }
+.badge-popular { position: absolute; top: 18px; left: 18px; background: #ff4757; color: white; font-size: 0.75rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.badge-discount { position: absolute; top: 18px; right: 18px; background: #006600; color: white; font-size: 0.75rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; }
+.food-card-info { padding: 10px 0; }
+.price-strike { text-decoration: line-through; color: #aaa; font-size: 0.85rem; margin-right: 5px; }
+.price { font-weight: bold; color: var(--primary-color); font-size: 1.1rem; }
 
-        <section id="deals" class="section deals-section">
-            <h2 class="section-title"><i class="fa-solid fa-tags"></i> Exclusive Azadi Mega Deals</h2>
-            <div class="deals-grid" id="deals-grid"></div>
-        </section>
+.flavor-select { width: 100%; padding: 5px; border-radius: 8px; border: 1px solid var(--border-color); margin: 6px 0; background: var(--bg-alt); color: var(--text-color); font-size: 0.85rem; outline: none; }
 
-        <section id="categories" class="section">
-            <h2 class="section-title">Categories</h2>
-            <div class="category-grid">
-                <button class="category-card active" data-category="all">
-                    <i class="fa-solid fa-border-all"></i><span>All</span>
-                </button>
-                <button class="category-card" data-category="burger">
-                    <i class="fa-solid fa-burger"></i><span>Burgers</span>
-                </button>
-                <button class="category-card" data-category="fries">
-                    <i class="fa-solid fa-fire"></i><span>Fries & Starters</span>
-                </button>
-                <button class="category-card" data-category="pizza">
-                    <i class="fa-solid fa-pizza-slice"></i><span>Pizzas</span>
-                </button>
-                <button class="category-card" data-category="desserts">
-                    <i class="fa-solid fa-ice-cream"></i><span>Desserts & Shakes</span>
-                </button>
-                <button class="category-card" data-category="drinks">
-                    <i class="fa-solid fa-glass-water"></i><span>Drinks</span>
-                </button>
-            </div>
-        </section>
+/* About & Staff */
+.about-container { background: var(--card-bg); border: 1px solid var(--border-color); padding: 2rem; border-radius: 20px; }
+.about-text p { margin-top: 10px; line-height: 1.6; color: #888; }
+.staff-title { margin: 2rem 0 1rem 0; font-size: 1.3rem; }
+.staff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+.staff-card { background: var(--bg-alt); padding: 1.2rem; border-radius: 15px; text-align: center; border: 1px solid var(--border-color); }
+.staff-icon { font-size: 2rem; color: var(--primary-color); margin-bottom: 8px; }
+.badge-staff { font-size: 0.75rem; background: #333; color: white; padding: 2px 8px; border-radius: 10px; margin-top: 5px; display: inline-block; }
 
-        <section id="menu" class="section">
-            <h2 class="section-title">Explore Our Delicious Menu</h2>
-            <div class="search-container">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="search-input" placeholder="Search burgers, desserts, shakes, pizzas...">
-            </div>
-            <div class="food-grid" id="food-grid"></div>
-        </section>
+/* Reviews Grid */
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; }
+.review-card { background: var(--card-bg); padding: 1.2rem; border-radius: 15px; border: 1px solid var(--border-color); box-shadow: var(--shadow); }
+.stars { color: #ffa500; font-size: 0.85rem; margin-bottom: 8px; }
+.review-card p { font-size: 0.88rem; font-style: italic; color: #888; }
+.review-author { margin-top: 10px; font-weight: bold; font-size: 0.9rem; color: var(--text-color); }
 
-        <section id="about" class="section about-section">
-            <h2 class="section-title">About BUZZ RESTAURANT</h2>
-            <div class="about-container">
-                <div class="about-text">
-                    <h3>We Serve Passion, Quality & Authentic Flavor</h3>
-                    <p>BUZZ RESTAURANT was founded with a single mission: to provide the juiciest burgers, crispies fries, delicious desserts, and ice-cold beverages with premium quality ingredients. Located in the heart of Pakistan, we take pride in our hygiene standards and fast delivery services.</p>
-                </div>
-                
-                <h3 class="staff-title"><i class="fa-solid fa-user-tie"></i> Our Management & Staff Login Portal</h3>
-                <div class="staff-grid">
-                    <div class="staff-card">
-                        <i class="fa-solid fa-user-shield staff-icon"></i>
-                        <h4>Subhamoy (Owner)</h4>
-                        <p>CEO & Founder</p>
-                        <span class="badge-staff">Admin Login</span>
-                    </div>
-                    <div class="staff-card">
-                        <i class="fa-solid fa-utensils staff-icon"></i>
-                        <h4>Chef Ahmed Khan</h4>
-                        <p>Head Chef</p>
-                        <span class="badge-staff">Kitchen Access</span>
-                    </div>
-                    <div class="staff-card">
-                        <i class="fa-solid fa-clipboard-user staff-icon"></i>
-                        <h4>Sara Malik</h4>
-                        <p>General Manager</p>
-                        <span class="badge-staff">Manager Access</span>
-                    </div>
-                    <div class="staff-card">
-                        <i class="fa-solid fa-motorcycle staff-icon"></i>
-                        <h4>Usman Ali</h4>
-                        <p>Delivery Lead</p>
-                        <span class="badge-staff">Rider Portal</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+/* Contact Us Section */
+.contact-wrapper { display: flex; gap: 2rem; flex-wrap: wrap; }
+.contact-info-card { 
+    flex: 1; 
+    min-width: 280px; 
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('aesthetic.jpg'); 
+    background-size: cover;
+    background-position: center;
+    color: #ffffff; 
+    padding: 2rem; 
+    border-radius: 20px; 
+    border: 1px solid var(--border-color); 
+    box-shadow: var(--shadow);
+}
+.contact-info-card h3 { margin-bottom: 1.5rem; color: var(--primary-color); }
+.contact-info-card p { margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: #f1f1f1; }
+.social-links { display: flex; gap: 15px; margin-top: 1.5rem; }
+.social-links a { color: #ffffff; background: rgba(255, 255, 255, 0.2); width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); transition: 0.3s; }
+.social-links a:hover { background: var(--primary-color); }
+.contact-form { flex: 1.2; min-width: 280px; background: var(--card-bg); padding: 2rem; border-radius: 20px; border: 1px solid var(--border-color); }
 
-        <section id="reviews" class="section reviews-section">
-            <h2 class="section-title"><i class="fa-solid fa-comments"></i> Customer Feedbacks</h2>
-            <div class="reviews-grid" id="reviews-grid"></div>
-        </section>
+/* Cart & Modal */
+.cart-overlay, .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 200; }
+.cart-drawer { position: fixed; right: 0; top: 0; width: 360px; height: 100%; background: var(--card-bg); padding: 1.5rem; display: flex; flex-direction: column; }
+.cart-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+.cart-items { flex: 1; overflow-y: auto; margin: 1rem 0; }
+.cart-item { display: flex; gap: 10px; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+.cart-item img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+.cart-item-controls button { width: 25px; height: 25px; border-radius: 50%; border: 1px solid var(--border-color); background: var(--bg-alt); cursor: pointer; color: var(--text-color); }
+.cart-footer { border-top: 1px solid var(--border-color); padding-top: 1rem; }
+.summary-line { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
+.total-line { font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
 
-        <section id="contact" class="section contact-section">
-            <h2 class="section-title">Get In Touch With Us</h2>
-            <div class="contact-wrapper">
-                <div class="contact-info-card">
-                    <h3>Contact Information</h3>
-                    <p><i class="fa-solid fa-location-dot"></i> Main Boulevard, Gulberg III, Lahore, Pakistan</p>
-                    <p><i class="fa-solid fa-phone"></i> +92 300 1234567 / +92 42 3556789</p>
-                    <p><i class="fa-solid fa-envelope"></i> info@buzzrestaurant.pk</p>
-                    <p><i class="fa-solid fa-clock"></i> Open Daily: 12:00 PM - 03:00 AM</p>
-                    
-                    <div class="social-links">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                    </div>
-                </div>
+.modal-content { background: var(--card-bg); padding: 2rem; border-radius: 15px; width: 90%; max-width: 420px; position: relative; border: 1px solid var(--border-color); color: var(--text-color); }
+.close-btn { position: absolute; right: 1rem; top: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-color); }
+.form-group { margin-bottom: 1rem; }
+.form-group label { font-size: 0.85rem; font-weight: 600; }
+.form-group input, .form-group textarea { width: 100%; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border-color); margin-top: 4px; background: var(--bg-alt); color: var(--text-color); outline: none; }
+.text-center { text-align: center; }
+.success-icon { font-size: 3.5rem; color: #2ed573; margin-bottom: 1rem; }
 
-                <form class="contact-form" id="contact-form">
-                    <h3>Send Us A Message</h3>
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="4" placeholder="Your Feedback or Inquiry..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-                </form>
-            </div>
-        </section>
+/* Order Tracking Stepper */
+.tracking-stepper { display: flex; justify-content: space-between; margin: 2rem 0; position: relative; }
+.tracking-stepper::before { content: ""; position: absolute; top: 20px; left: 10%; width: 80%; height: 3px; background: var(--border-color); z-index: 1; }
+.step { position: relative; z-index: 2; text-align: center; }
+.step-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-alt); color: #888; display: flex; justify-content: center; align-items: center; margin: 0 auto 6px auto; font-size: 0.9rem; border: 1px solid var(--border-color); }
+.step.active .step-icon { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+.step span { font-size: 0.72rem; font-weight: bold; color: #777; }
+.step.active span { color: var(--primary-color); }
+.rider-info-box { background: var(--bg-alt); padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); font-size: 0.85rem; margin-top: 10px; text-align: left; }
 
-        <div class="cart-overlay" id="cart-overlay">
-            <div class="cart-drawer">
-                <div class="cart-header">
-                    <h3>My Order Cart (<span id="cart-drawer-count">0</span>)</h3>
-                    <button id="close-cart" class="close-btn">&times;</button>
-                </div>
-                <div class="cart-items" id="cart-items"></div>
-                <div class="cart-footer">
-                    <div class="summary-line"><span>Subtotal</span><span id="subtotal-price">Rs. 0</span></div>
-                    <div class="summary-line"><span>Azadi Discount (15%)</span><span id="discount-price" style="color: #2ed573;">- Rs. 0</span></div>
-                    <div class="summary-line" id="promo-discount-line" style="display: none;"><span>Promo Code Discount</span><span id="promo-discount-price" style="color: #2ed573;">- Rs. 0</span></div>
-                    <div class="summary-line"><span>1st Delivery Fee</span><span style="color: #2ed573;">FREE (Rs. 0)</span></div>
-                    <div class="summary-line total-line"><span>Total Amount</span><span id="cart-total-price">Rs. 0</span></div>
-                    <button id="proceed-checkout-btn" class="btn btn-primary btn-block">Checkout Now</button>
-                </div>
-            </div>
-        </div>
+#scroll-top-btn { position: fixed; bottom: 20px; right: 20px; background: var(--primary-color); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: none; z-index: 150; }
+footer { text-align: center; padding: 1.5rem; background: var(--bg-alt); font-size: 0.85rem; border-top: 1px solid var(--border-color); }
 
-        <div class="modal" id="checkout-modal">
-            <div class="modal-content">
-                <button class="close-btn modal-close">&times;</button>
-                <h2>Checkout Order (PKR)</h2>
-                <form id="checkout-form">
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" required placeholder="Enter your full name">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number *</label>
-                        <input type="tel" required placeholder="03001234567">
-                    </div>
-                    <div class="form-group">
-                        <label>Delivery Address *</label>
-                        <textarea rows="2" required placeholder="Enter complete address in Pakistan"></textarea>
-                    </div>
+/* RESPONSIVE MEDIA QUERIES (Mobile & Tablet Optimization) */
+@media (max-width: 900px) {
+    .login-right-curved {
+        border-radius: 0;
+        min-height: 200px;
+    }
+}
 
-                    <div class="form-group">
-                        <label>Promo Code / Coupon (Optional)</label>
-                        <div style="display: flex; gap: 8px;">
-                            <input type="text" id="promo-code-input" placeholder="e.g. AZADI15 or BUZZ20" style="margin-top: 0;">
-                            <button type="button" id="apply-promo-btn" class="btn btn-secondary" style="padding: 0 15px;">Apply</button>
-                        </div>
-                        <p id="promo-message" style="font-size: 0.75rem; margin-top: 4px;"></p>
-                    </div>
+@media (max-width: 768px) {
+    .intro-content h1 { font-size: 2.2rem; }
+    
+    .status-badge { display: none; }
+    .hamburger-btn { display: block; }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--card-bg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        border-bottom: 1px solid var(--border-color);
+        gap: 1rem;
+    }
+    
+    .nav-links.active-menu { display: flex; }
 
-                    <div class="form-group">
-                        <label>Select Payment Method *</label>
-                        <select required style="width: 100%; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-alt); color: var(--text-color); outline: none;">
-                            <option value="cod">💵 Cash on Delivery (COD)</option>
-                            <option value="jazzcash">📱 JazzCash / EasyPaisa</option>
-                            <option value="card">💳 Debit / Credit Card</option>
-                        </select>
-                    </div>
+    .hero { min-height: 65vh; padding: 3rem 5%; }
+    .hero-content h1 { font-size: 1.9rem; }
+    .hero-content p { font-size: 0.95rem; }
 
-                    <button type="submit" class="btn btn-primary btn-block">Confirm & Place Order</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="modal" id="tracking-modal">
-            <div class="modal-content text-center">
-                <i class="fa-solid fa-circle-check success-icon"></i>
-                <h2>Order Confirmed!</h2>
-                <p style="font-size: 0.85rem; color: #666;">Order ID: <strong>#BZ-8902</strong></p>
-                
-                <div class="tracking-stepper">
-                    <div class="step active" id="step-1">
-                        <div class="step-icon"><i class="fa-solid fa-receipt"></i></div>
-                        <span>Received</span>
-                    </div>
-                    <div class="step" id="step-2">
-                        <div class="step-icon"><i class="fa-solid fa-utensils"></i></div>
-                        <span>Preparing</span>
-                    </div>
-                    <div class="step" id="step-3">
-                        <div class="step-icon"><i class="fa-solid fa-motorcycle"></i></div>
-                        <span>On the Way</span>
-                    </div>
-                    <div class="step" id="step-4">
-                        <div class="step-icon"><i class="fa-solid fa-house-chimney"></i></div>
-                        <span>Delivered</span>
-                    </div>
-                </div>
-
-                <div class="rider-info-box">
-                    <p><i class="fa-solid fa-user-gear"></i> <strong>Rider:</strong> Usman Ali (+92 300 9876543)</p>
-                    <p><i class="fa-solid fa-clock"></i> <strong>Est. Time:</strong> <span id="delivery-timer">25 Mins</span></p>
-                </div>
-
-                <button class="btn btn-primary modal-close" style="margin-top: 15px;">Back to Menu</button>
-            </div>
-        </div>
-
-        <button id="scroll-top-btn"><i class="fa-solid fa-arrow-up"></i></button>
-
-        <footer>
-            <p>&copy; 2026 BUZZ RESTAURANT Pakistan. All Rights Reserved.</p>
-        </footer>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    .section { padding: 2.5rem 5%; }
+    .cart-drawer { width: 100%; }
+}
