@@ -227,3 +227,54 @@ footer { text-align: center; padding: 1.5rem; background: var(--bg-alt); font-si
     padding: 25px !important;
   }
 }
+/* --- Mobile Viewport Overflow & Layout Fix --- */
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important; /* Screen ke bahar jane wali line ko rokne ke liye */
+}
+
+@media screen and (max-width: 768px) {
+  /* Header ko mobile par set karne ke liye */
+  header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 10px 15px !important;
+  }
+
+  /* Purane bade menu ko mobile par chhupanay ke liye */
+  nav, .header-actions nav {
+    display: none !important; 
+  }
+
+  /* Hamburger menu icon ko dikhane ke liye */
+  .hamburger-menu {
+    display: block !important;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #e61238;
+  }
+
+  /* Hero Section ko background image ke sath set karne ke liye */
+  .hero-section {
+    position: relative !important;
+    background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('asthetic.jpg');
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 16px !important;
+    padding: 25px 15px !important;
+    text-align: left !important;
+  }
+
+  /* Jo choti burger image side par gandi lag rahi thi, usey hatane ke liye */
+  .hero-image-container, .hero-section img {
+    display: none !important;
+  }
+
+  /* Text size ko mobile par perfect rakhne ke liye */
+  .hero-section h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+}
